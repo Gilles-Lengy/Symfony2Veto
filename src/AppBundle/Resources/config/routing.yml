@@ -3,3 +3,17 @@
 app_index:
     path:     /
     defaults: { _controller: AppBundle:App:index }
+
+app_viewAnimal:
+    path:      /animal/{id}
+    defaults:
+        _controller: AppBundle:App:viewAnimal
+    requirements:
+        id: \d+
+        
+app_editAnimal:
+    path:      /animal/edit/{id}
+    defaults:
+           _controller: AppBundle:App:editAnimal
+    requirements:
+        id: \d+

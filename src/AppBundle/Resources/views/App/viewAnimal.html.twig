@@ -1,0 +1,49 @@
+{# src/AppBundle/Resources/view/App/viewAnimal.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+    Fiche d'un animal - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+    <div>
+
+        {# On affiche tous les messages flash dont le nom est « info » #}
+
+        {% for message in app.session.flashbag.get('notice') %}
+            <div class="alert alert-success" role="alert">
+                <p>{{ message }}</p>
+            </div>
+
+
+        {% endfor %}
+
+    </div>
+
+    <h2>{{ animal.nom }}   <span class="label label-default">{{ animal.dateNaissance|date('d/m/Y') }}</span></h2>
+    <i>Dernière MAJ : {{ animal.dateMaj|date('d/m/Y H:m:s') }}</i>
+
+    <div class="well">
+        <p>{{ animal.commentaire }}</p>
+    </div>
+
+
+
+    <p>
+        <a href="{{ path('app_index') }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour à l'accueil
+        </a>
+        <a href="{{ path('app_editAnimal', {'id': animal.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-edit"></i>
+            Modifier l'animal
+        </a>
+        <a href="#" class="btn btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            Supprimer l'annonce
+        </a>
+    </p>
+
+{% endblock %}

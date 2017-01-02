@@ -1,0 +1,13 @@
+{# src/AppBundle/Resources/views/App/menu.html.twig #}
+
+{# Ce template n'hérite de personne, tout comme le template inclus avec {{ include() }}. #}
+
+<ul class="nav nav-pills nav-stacked">
+  {% for animal in listeAnimaux %}
+    <li>
+      <a href="{{ path('app_viewAnimal', {'id': animal.id}) }}">
+        {{ animal.nom }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
