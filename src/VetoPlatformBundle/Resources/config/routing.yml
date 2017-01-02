@@ -1,0 +1,3 @@
+veto_platform_homepage:
+    path:     /
+    defaults: { _controller: VetoPlatformBundle:Default:index }
