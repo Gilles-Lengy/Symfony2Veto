@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="animal")
  * @ORM\Entity(repositoryClass="VetoPlatformBundle\Repository\AnimalRepository")
  */
-class Animal
-{
+class Animal {
+
     /**
      * @var int
      *
@@ -49,14 +49,17 @@ class Animal
      */
     private $dateMaj;
 
+    public function __construct() {
+        // Par défaut, la date de l'annonce est la date d'aujourd'hui
+        $this->dateMaj = new \Datetime();
+    }
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -67,8 +70,7 @@ class Animal
      *
      * @return Animal
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -79,8 +81,7 @@ class Animal
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
 
@@ -91,8 +92,7 @@ class Animal
      *
      * @return Animal
      */
-    public function setDateNaissance($dateNaissance)
-    {
+    public function setDateNaissance($dateNaissance) {
         $this->dateNaissance = $dateNaissance;
 
         return $this;
@@ -103,8 +103,7 @@ class Animal
      *
      * @return \DateTime
      */
-    public function getDateNaissance()
-    {
+    public function getDateNaissance() {
         return $this->dateNaissance;
     }
 
@@ -115,8 +114,7 @@ class Animal
      *
      * @return Animal
      */
-    public function setCommentaire($commentaire)
-    {
+    public function setCommentaire($commentaire) {
         $this->commentaire = $commentaire;
 
         return $this;
@@ -127,8 +125,7 @@ class Animal
      *
      * @return string
      */
-    public function getCommentaire()
-    {
+    public function getCommentaire() {
         return $this->commentaire;
     }
 
@@ -139,8 +136,7 @@ class Animal
      *
      * @return Animal
      */
-    public function setDateMaj($dateMaj)
-    {
+    public function setDateMaj($dateMaj) {
         $this->dateMaj = $dateMaj;
 
         return $this;
@@ -151,9 +147,8 @@ class Animal
      *
      * @return \DateTime
      */
-    public function getDateMaj()
-    {
+    public function getDateMaj() {
         return $this->dateMaj;
     }
-}
 
+}
