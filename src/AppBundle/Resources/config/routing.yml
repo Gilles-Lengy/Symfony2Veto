@@ -10,7 +10,11 @@ app_viewAnimal:
         _controller: AppBundle:App:viewAnimal
     requirements:
         id: \d+
-        
+
+app_addAnimal:
+    path:      /animal/add
+    defaults: { _controller: AppBundle:App:addAnimal }
+    
 app_editAnimal:
     path:      /animal/edit/{id}
     defaults:

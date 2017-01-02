@@ -6,6 +6,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use VetoPlatformBundle\Entity\Animal;
+
 class AppController extends Controller {
 
     public function indexAction() {
@@ -26,6 +28,30 @@ class AppController extends Controller {
 
         return $this->render('AppBundle:App:viewAnimal.html.twig', array(
                     'animal' => $animal,
+        ));
+    }
+
+    public function addAnimalAction(Request $request) {
+        // On crée un objet Animal
+        $animal = new Animal();
+
+        // On crée le FormBuilder grâce au service form factory
+        $formBuilder = $this->get('form.factory')->createBuilder('form', $animal);
+
+        // On ajoute les champs de l'entité que l'on veut à notre formulaire
+        $formBuilder
+                ->add('nom', 'text')
+                ->add('commentaire', 'textarea')
+                ->add('save', 'submit')
+        ;
+        // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
+        // À partir du formBuilder, on génère le formulaire
+        $form = $formBuilder->getForm();
+
+        // On passe la méthode createView() du formulaire à la vue
+        // afin qu'elle puisse afficher le formulaire toute seule
+        return $this->render('AppBundle:App:addAnimal.html.twig', array(
+                    'form' => $form->createView(),
         ));
     }
 

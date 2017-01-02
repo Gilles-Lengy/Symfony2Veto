@@ -1,0 +1,16 @@
+{# src/AppBundle/Resources/view/App/addAnimal.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Ajouter un animal</h2>
+
+  {{ include("AppBundle:App:form.html.twig") }}
+
+  <p>
+    Attention : cet animal sera ajouté directement
+    sur la page d'accueil après validation du formulaire.
+  </p>
+
+{% endblock %}
