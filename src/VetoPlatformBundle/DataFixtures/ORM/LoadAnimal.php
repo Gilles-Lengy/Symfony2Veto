@@ -15,7 +15,7 @@ class LoadAnimal implements FixtureInterface {
     public function load(ObjectManager $manager) {
         // Animaux
 
-        $animal_1 = array("Minou", NULL, "Chat recueilli fin Novembre par Gilles Lengy"); // ATTENTION Pensez à utiliser prepersite pour la date de maj
+        $animal_1 = array("Minou", NULL, "Chat recueilli fin Novembre par Gilles Lengy");
         $animal_2 = array("Minette", new \Datetime("2015-12-13 00:00:00"), "A stériliser");
         $animal_3 = array("Belle", new \Datetime("1974-12-13 00:00:00"), "Chienne décédée");
         $animal_4 = array("Boule de poil", NULL, "Hamster achetée dans une animalerie tout bébé");
