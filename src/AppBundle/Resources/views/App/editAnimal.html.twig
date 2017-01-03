@@ -1,0 +1,15 @@
+{# src/AppBundle/Resources/view/App/EditAnimal.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block body %}
+
+  <h2>Modifier un animal</h2>
+
+  {{ include("AppBundle:App:form.html.twig") }}
+
+  <p>
+    Attention : cet animal sera directement modifié.
+  </p>
+
+{% endblock %}

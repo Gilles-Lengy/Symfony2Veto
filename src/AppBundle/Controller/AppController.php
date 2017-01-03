@@ -80,29 +80,36 @@ class AppController extends Controller {
             throw new NotFoundHttpException("L'animal d'id " . $id . " n'existe pas.");
         }
 
-        // Ici il faudra mettre la gestion du formulaire
+        // On crée le FormBuilder grâce au service form factory
+        $form = $this->get('form.factory')->createBuilder('form', $animal)
+                ->add('nom', 'text')
+                ->add('dateNaissance', 'date', array('required' => false))
+                ->add('commentaire', 'textarea', array('required' => false))
+                ->add('save', 'submit')
+                ->getForm();
 
-        if ($request->isMethod('GET')) {// Attention, il faudra mettre POST lorsque ça sera un formulaire
+        // On fait le lien Requête <-> Formulaire
+        // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+        $form->handleRequest($request);
+
+        // On vérifie que les valeurs entrées sont correctes
+        // (Nous verrons la validation des objets en détail dans le prochain chapitre)
+        if ($form->isValid()) {
+            // On l'enregistre notre objet $advert dans la base de données, par exemple
             $em = $this->getDoctrine()->getManager();
-            // On récupère l'animal
-
-            $animal = $em->getRepository('VetoPlatformBundle:Animal')->find($id);
-
-            $animal->setDateMaj(new \Datetime()); // ATTENTION Pensez à utiliser prepersite pour la date de maj
-            // On le persiste
-
             $em->persist($animal);
-
-            // On déclenche l'enregistrement de tous les animaux
-
             $em->flush();
-            $request->getSession()->getFlashBag()->add('notice', 'Animal bien modifiée.');
-            return $this->redirectToRoute('app_viewAnimal', array('id' => $animal->getId()));
+
+            $request->getSession()->getFlashBag()->add('notice', 'Animal bien modifié.');
+
+            // On redirige vers la page de visualisation de l'annonce nouvellement créée
+            return $this->redirect($this->generateUrl('app_viewAnimal', array('id' => $animal->getId())));
         }
 
 
         return $this->render('AppBundle:App:editAnimal.html.twig', array(
                     'animal' => $animal,
+                    'form' => $form->createView()
         ));
     }
 
