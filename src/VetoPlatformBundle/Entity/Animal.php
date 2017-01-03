@@ -3,6 +3,7 @@
 namespace VetoPlatformBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Animal
@@ -25,6 +26,7 @@ class Animal {
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
+     * @Assert\Length(min=4, minMessage="Le nom doit faire au moins {{ limit }} caractères.")
      */
     private $nom;
 
@@ -32,6 +34,7 @@ class Animal {
      * @var \DateTime
      *
      * @ORM\Column(name="date_naissance", type="datetime", nullable=true)
+     * @Assert\DateTime()
      */
     private $dateNaissance;
 
