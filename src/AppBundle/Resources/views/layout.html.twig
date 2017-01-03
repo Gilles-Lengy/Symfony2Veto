@@ -34,6 +34,18 @@
             <div class="row">
                 <div id="menu" class="col-md-3">
                     <h3>Menu</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <a href="{{ path('app_index') }}" class="btn btn-default">
+                                Accueil
+                            </a></li>
+                        <li>
+                            <a href="{{ path('app_addAnimal') }}" class="btn btn-default">
+                                <i class="glyphicon glyphicon-plus"></i>
+                                Ajouter un animal
+                            </a>
+                        </li>
+                    </ul>
                     <h4>Dernières Maj</h4>
                     {{ render(controller("AppBundle:App:menu", {'limit': 3})) }}
                 </div>
