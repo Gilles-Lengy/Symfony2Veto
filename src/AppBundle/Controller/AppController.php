@@ -5,7 +5,6 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-
 use VetoPlatformBundle\Entity\Animal;
 
 class AppController extends Controller {
@@ -36,20 +35,33 @@ class AppController extends Controller {
         $animal = new Animal();
 
         // On crée le FormBuilder grâce au service form factory
-        $formBuilder = $this->get('form.factory')->createBuilder('form', $animal);
-
-        // On ajoute les champs de l'entité que l'on veut à notre formulaire
-        $formBuilder
+        $form = $this->get('form.factory')->createBuilder('form', $animal)
                 ->add('nom', 'text')
                 ->add('commentaire', 'textarea')
                 ->add('save', 'submit')
-        ;
-        // Pour l'instant, pas de candidatures, catégories, etc., on les gérera plus tard
-        // À partir du formBuilder, on génère le formulaire
-        $form = $formBuilder->getForm();
+                ->getForm();
 
-        // On passe la méthode createView() du formulaire à la vue
-        // afin qu'elle puisse afficher le formulaire toute seule
+        // On fait le lien Requête <-> Formulaire
+        // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
+        $form->handleRequest($request);
+
+        // On vérifie que les valeurs entrées sont correctes
+        // (Nous verrons la validation des objets en détail dans le prochain chapitre)
+        if ($form->isValid()) {
+            // On l'enregistre notre objet $advert dans la base de données, par exemple
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($animal);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', 'Animal bien enregistré.');
+
+            // On redirige vers la page de visualisation de l'annonce nouvellement créée
+            return $this->redirect($this->generateUrl('app_viewAnimal', array('id' => $animal->getId())));
+        }
+
+        // À ce stade, le formulaire n'est pas valide car :
+        // - Soit la requête est de type GET, donc le visiteur vient d'arriver sur la page et veut voir le formulaire
+        // - Soit la requête est de type POST, mais le formulaire contient des valeurs invalides, donc on l'affiche de nouveau
         return $this->render('AppBundle:App:addAnimal.html.twig', array(
                     'form' => $form->createView(),
         ));
