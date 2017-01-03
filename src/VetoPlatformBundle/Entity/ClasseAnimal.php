@@ -63,4 +63,3 @@ class ClasseAnimal
         return $this->nom;
     }
 }
-

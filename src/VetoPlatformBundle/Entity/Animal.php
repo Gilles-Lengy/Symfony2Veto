@@ -52,6 +52,12 @@ class Animal {
      */
     private $dateMaj;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="VetoPlatformBundle\Entity\ClasseAnimal")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $classeAnimal;
+
     public function __construct() {
         // Par défaut, la date de l'annonce est la date d'aujourd'hui
         $this->dateMaj = new \Datetime();
@@ -154,4 +160,28 @@ class Animal {
         return $this->dateMaj;
     }
 
+
+    /**
+     * Set classeAnimal
+     *
+     * @param \VetoPlatformBundle\Entity\ClasseAnimal $classeAnimal
+     *
+     * @return Animal
+     */
+    public function setClasseAnimal(\VetoPlatformBundle\Entity\ClasseAnimal $classeAnimal = null)
+    {
+        $this->classeAnimal = $classeAnimal;
+
+        return $this;
+    }
+
+    /**
+     * Get classeAnimal
+     *
+     * @return \VetoPlatformBundle\Entity\ClasseAnimal
+     */
+    public function getClasseAnimal()
+    {
+        return $this->classeAnimal;
+    }
 }
