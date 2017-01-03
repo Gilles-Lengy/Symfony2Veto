@@ -11,7 +11,15 @@ use VetoPlatformBundle\Form\AnimalType;
 class AppController extends Controller {
 
     public function indexAction() {
-        return $this->render('AppBundle:App:index.html.twig');
+        $em = $this->getDoctrine()->getManager();
+
+        $listeAnimaux = $em->getRepository('VetoPlatformBundle:Animal')->findBy(
+                array(), // Pas de critère
+                array('dateMaj' => 'desc')
+        );
+        return $this->render('AppBundle:App:index.html.twig', array(
+                    'listeAnimaux' => $listeAnimaux
+        ));
     }
 
     public function viewAnimalAction($id) {

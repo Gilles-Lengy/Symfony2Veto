@@ -25,4 +25,21 @@
 
     <p>Bienvenue sur votre futur application de gestion de RDV pour clinique vétérinaire</p>
 
+    <h2>Tous les animaux par ordre de MAJ</h2>
+
+    <ul class="list-group">
+        {% for animal in listeAnimaux %}
+            <li class="list-group-item">
+                <h3>
+                <a href="{{ path('app_viewAnimal', {'id': animal.id}) }}">
+                    <i class="glyphicon glyphicon-chevron-right"></i>
+                    {{ animal.nom }}
+                    
+                </a>
+                    <span class="label label-default">{{ animal.dateMaj|date('d/m/Y H:m:s') }}</span>
+                </h3>
+            </li>
+        {% endfor %}
+    </ul>
+
 {% endblock %}
