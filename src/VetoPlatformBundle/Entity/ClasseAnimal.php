@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="classe_animal")
  * @ORM\Entity(repositoryClass="VetoPlatformBundle\Repository\ClasseAnimalRepository")
  */
-class ClasseAnimal
-{
+class ClasseAnimal {
+
     /**
      * @var int
      *
@@ -28,14 +28,12 @@ class ClasseAnimal
      */
     private $nom;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -46,8 +44,7 @@ class ClasseAnimal
      *
      * @return ClasseAnimal
      */
-    public function setNom($nom)
-    {
+    public function setNom($nom) {
         $this->nom = $nom;
 
         return $this;
@@ -58,8 +55,15 @@ class ClasseAnimal
      *
      * @return string
      */
-    public function getNom()
-    {
+    public function getNom() {
         return $this->nom;
     }
+
+    /**
+     * @return string String representation of this class
+     */
+    public function __toString() {
+        return (string) $this->getId();
+    }
+
 }

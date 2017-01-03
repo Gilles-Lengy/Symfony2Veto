@@ -6,46 +6,36 @@ namespace VetoPlatformBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use VetoPlatformBundle\Entity\ClasseAnimal;
 
-class LoadClasseAnimal implements FixtureInterface {
+class LoadClasseAnimal implements FixtureInterface, OrderedFixtureInterface {
 
     // Dans l'argument de la méthode load, l'objet $manager est l'EntityManager
 
     public function load(ObjectManager $manager) {
-        // Animaux
 
-        $classe_animal_1 = array("Mammifère");
-        $classe_animal_2 = array("Oiseau");
-        $classe_animal_3 = array("Poisson");
-        $classe_animal_4 = array("Reptile");
 
-        // Liste des animaux à ajouter
-
-        $classes_animal = array(
-            $classe_animal_1,
-            $classe_animal_2,
-            $classe_animal_3,
-            $classe_animal_4
+        // Liste des noms de Classe animal à ajouter
+        $names = array(
+            "Mammifère",
+            "Oiseau",
+            "Poisson",
+            "Reptile"
         );
 
-
-        foreach ($classes_animal as $tab_classe_animal) {
-
-            // On crée l'animal
-
+        foreach ($names as $name) {
+            
+            // On crée la classe animal
             $classe_animal = new ClasseAnimal();
+            $classe_animal->setNom($name);
 
-            $classe_animal->setNom($tab_classe_animal[0]);
-
-
-            // On le persiste
-
+            // On la persiste
             $manager->persist($classe_animal);
         }
 
 
-        // On déclenche l'enregistrement de tous les animaux
+        // On déclenche l'enregistrement de toutes les classes
 
         $manager->flush();
     }
