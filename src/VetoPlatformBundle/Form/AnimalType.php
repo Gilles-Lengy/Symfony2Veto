@@ -6,21 +6,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AnimalType extends AbstractType
-{
+class AnimalType extends AbstractType {
+
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
-        $builder->add('nom')->add('dateNaissance')->add('commentaire')->add('dateMaj')        ;
+    public function buildForm(FormBuilderInterface $builder, array $options) {
+        $builder
+                ->add('nom', 'text')
+                ->add('dateNaissance', 'date', array('required' => false))
+                ->add('commentaire', 'textarea', array('required' => false))
+                ->add('save', 'submit');
     }
-    
+
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'VetoPlatformBundle\Entity\Animal'
         ));
@@ -29,10 +31,8 @@ class AnimalType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
-    {
+    public function getBlockPrefix() {
         return 'vetoplatformbundle_animal';
     }
-
 
 }

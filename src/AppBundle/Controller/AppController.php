@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use VetoPlatformBundle\Entity\Animal;
+use VetoPlatformBundle\Form\AnimalType;
 
 class AppController extends Controller {
 
@@ -35,12 +36,7 @@ class AppController extends Controller {
         $animal = new Animal();
 
         // On crée le FormBuilder grâce au service form factory
-        $form = $this->get('form.factory')->createBuilder('form', $animal)
-                ->add('nom', 'text')
-                ->add('dateNaissance', 'date', array('required' => false))
-                ->add('commentaire', 'textarea', array('required' => false))
-                ->add('save', 'submit')
-                ->getForm();
+        $form = $this->get('form.factory')->create(new AnimalType(), $animal);
 
         // On fait le lien Requête <-> Formulaire
         // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
@@ -81,12 +77,7 @@ class AppController extends Controller {
         }
 
         // On crée le FormBuilder grâce au service form factory
-        $form = $this->get('form.factory')->createBuilder('form', $animal)
-                ->add('nom', 'text')
-                ->add('dateNaissance', 'date', array('required' => false))
-                ->add('commentaire', 'textarea', array('required' => false))
-                ->add('save', 'submit')
-                ->getForm();
+        $form = $this->get('form.factory')->create(new AnimalType(), $animal);
 
         // On fait le lien Requête <-> Formulaire
         // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
