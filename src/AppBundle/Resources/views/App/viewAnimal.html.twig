@@ -40,9 +40,9 @@
             <i class="glyphicon glyphicon-edit"></i>
             Modifier l'animal
         </a>
-        <a href="#" class="btn btn-danger">
+        <a href="{{ path('app_deleteAnimal', {'id': animal.id}) }}" class="btn btn-danger">
             <i class="glyphicon glyphicon-trash"></i>
-            Supprimer l'annonce
+            Supprimer l'animal
         </a>
     </p>
 

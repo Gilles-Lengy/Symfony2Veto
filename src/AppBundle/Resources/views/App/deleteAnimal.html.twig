@@ -1,0 +1,29 @@
+{# src/AppBundle/Resources/view/App/deleteAnimal.html.twig #}
+
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block title %}
+  Supprimer un animal - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+
+  <h2>Supprimer un animal</h2>
+
+  <p>
+    Etes-vous certain de vouloir supprimer l'animal "{{ animal.nom }}" ?
+  </p>
+
+  {# On met l'id de l'annonce dans la route de l'action du formulaire #}
+  <form action="{{ path('app_deleteAnimal', {'id': animal.id}) }}" method="post">
+    <a href="{{ path('app_viewAnimal', {'id': animal.id}) }}" class="btn btn-default">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+      Retour à l'animal
+    </a>
+    {# Ici j'ai écrit le bouton de soumission à la main #}
+    <input type="submit" value="Supprimer" class="btn btn-danger" />
+    {# Ceci va générer le champ CSRF #}
+    {{ form_rest(form) }}
+  </form>
+
+{% endblock %}

@@ -106,6 +106,38 @@ class AppController extends Controller {
         ));
     }
 
+    public function deleteAnimalAction($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+
+        // Pour récupérer une seule annonce, on utilise la méthode find($id)
+        $animal = $em->getRepository('VetoPlatformBundle:Animal')->find($id);
+
+        // $advert est donc une instance de OC\PlatformBundle\Entity\Advert
+        // ou null si l'id $id n'existe pas, d'où ce if :
+        if (null === $animal) {
+            throw new NotFoundHttpException("L'animal d'id " . $id . " n'existe pas.");
+        }
+
+        // On crée un formulaire vide, qui ne contiendra que le champ CSRF
+        // Cela permet de protéger la suppression d'annonce contre cette faille
+        $form = $this->createFormBuilder()->getForm();
+
+        if ($form->handleRequest($request)->isValid()) {
+            $em->remove($animal);
+            $em->flush();
+
+            $request->getSession()->getFlashBag()->add('notice', "L'animal a bien été supprimé.");
+
+            return $this->redirect($this->generateUrl('app_index'));
+        }
+
+        // Si la requête est en GET, on affiche une page de confirmation avant de supprimer
+        return $this->render('AppBundle:App:deleteAnimal.html.twig', array(
+                    'animal' => $animal,
+                    'form' => $form->createView()
+        ));
+    }
+
     public function menuAction($limit) {
         $em = $this->getDoctrine()->getManager();
 

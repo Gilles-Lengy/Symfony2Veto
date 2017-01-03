@@ -21,3 +21,10 @@ app_editAnimal:
            _controller: AppBundle:App:editAnimal
     requirements:
         id: \d+
+
+app_deleteAnimal:
+    path:      /animal/delete/{id}
+    defaults:
+           _controller: AppBundle:App:deleteAnimal
+    requirements:
+        id: \d+
