@@ -36,7 +36,8 @@ class AppController extends Controller {
         $animal = new Animal();
 
         // On crée le FormBuilder grâce au service form factory
-        $form = $this->get('form.factory')->create(new AnimalType(), $animal);
+        //$form = $this->get('form.factory')->create(new AnimalType(), $animal);
+        $form = $this->createForm(new AnimalType(), $animal);
 
         // On fait le lien Requête <-> Formulaire
         // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
@@ -77,7 +78,8 @@ class AppController extends Controller {
         }
 
         // On crée le FormBuilder grâce au service form factory
-        $form = $this->get('form.factory')->create(new AnimalType(), $animal);
+        //$form = $this->get('form.factory')->create(new AnimalType(), $animal);
+        $form = $this->createForm(new AnimalType(), $animal);
 
         // On fait le lien Requête <-> Formulaire
         // À partir de maintenant, la variable $advert contient les valeurs entrées dans le formulaire par le visiteur
