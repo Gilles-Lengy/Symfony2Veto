@@ -37,7 +37,7 @@ class AppController extends Controller {
         // On crée le FormBuilder grâce au service form factory
         $form = $this->get('form.factory')->createBuilder('form', $animal)
                 ->add('nom', 'text')
-                ->add('commentaire', 'textarea')
+                ->add('commentaire', 'textarea', array('required' => false))
                 ->add('save', 'submit')
                 ->getForm();
 
