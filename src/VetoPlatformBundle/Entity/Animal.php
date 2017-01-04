@@ -54,7 +54,7 @@ class Animal {
 
     /**
      * @ORM\ManyToOne(targetEntity="VetoPlatformBundle\Entity\ClasseAnimal")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $classeAnimal;
 
