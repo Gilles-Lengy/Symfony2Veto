@@ -36,7 +36,7 @@ class LoadAnimal implements FixtureInterface, ContainerAwareInterface, OrderedFi
         $animal_1 = array("Minou", NULL, "Chat recueilli fin Novembre par Gilles Lengy", $classe_animal_mammifere);
         $animal_2 = array("Minette", new \Datetime("2015-12-13 00:00:00"), "A stériliser", $classe_animal_mammifere);
         $animal_3 = array("Belle", new \Datetime("1974-12-13 00:00:00"), "Chienne décédée", $classe_animal_mammifere);
-        $animal_4 = array("Boule de poil", NULL, "Hamster achetée dans une animalerie tout bébé", NULL);
+        $animal_4 = array("Boule de poil", NULL, "Hamster achetée dans une animalerie tout bébé", $classe_animal_mammifere);
         $animal_5 = array("Titi", NULL, "Gros minet le chasse", $classe_animal_oiseau);
 
         // Liste des animaux à ajouter
