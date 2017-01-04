@@ -16,6 +16,10 @@ class AnimalType extends AbstractType {
                 ->add('nom', 'text')
                 ->add('dateNaissance', 'date', array('required' => false))
                 ->add('commentaire', 'textarea', array('required' => false))
+                ->add('classeAnimal', 'entity', array(
+                    'class' => 'VetoPlatformBundle:ClasseAnimal',
+                    'property' => 'nom',
+                    'multiple' => false))
                 ->add('save', 'submit');
     }
 
