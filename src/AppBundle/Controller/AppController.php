@@ -34,8 +34,13 @@ class AppController extends Controller {
             throw new NotFoundHttpException("L'animal d'id " . $id . " n'existe pas.");
         }
 
+        // On récupère la Classe Animal
+
+        $classAnimal = $em->getRepository('VetoPlatformBundle:ClasseAnimal')->find($animal->getClasseAnimal());
+
         return $this->render('AppBundle:App:viewAnimal.html.twig', array(
                     'animal' => $animal,
+                    'class_animal' => $classAnimal
         ));
     }
 
