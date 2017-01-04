@@ -29,6 +29,13 @@ class ClasseAnimal {
     private $nom;
 
     /**
+     * @return string String representation of this class
+     */
+    public function __toString() {
+        return (string) $this->getId();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -57,13 +64,6 @@ class ClasseAnimal {
      */
     public function getNom() {
         return $this->nom;
-    }
-
-    /**
-     * @return string String representation of this class
-     */
-    public function __toString() {
-        return (string) $this->getId();
     }
 
 }
