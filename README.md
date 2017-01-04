@@ -12,7 +12,7 @@ This is not a real life app.
 Vous avez deux solutions pour le faire :
 
 1. Via Git, en clonant ce dépôt ; Vous aurez donc une version en cours de dévelloppement non stable...
-2. Via le téléchargement du code source en une archive ZIP, à cette adresse : https://github.com/Gilles-Lengy/Symfony2Veto/releases/tag/170103.1514. Vous aurez une version stable à utiliser en mode dev de Symfony2.
+2. Via le téléchargement du code source en une archive ZIP, à cette adresse : https://github.com/Gilles-Lengy/Symfony2Veto/releases/tag/170104.1113. Vous aurez une version stable à utiliser en mode dev de Symfony2.
 
 ## 2. Définir vos paramètres d'application
 Pour ne pas qu'on se partage tous nos mots de passe, le fichier `app/config/parameters.yml` est ignoré dans ce dépôt. A la place, vous avez le fichier `parameters.yml.dist` que vous devez renommer (enlevez le `.dist`) et modifier.
